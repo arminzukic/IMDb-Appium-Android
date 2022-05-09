@@ -6,8 +6,8 @@
   The scripts uses the IMDb API calls to assert the UI values for which it is required to use your own API Key to be able to send requests.
 Inside the ImdbApi.cs file please provide the "<IMDb_API_KEY>" which u can generate by registering on the site: https://imdb-api.com/. 
 
-  In order to execute tests on Browserstack, inside the ImdbAndroidBrowserStackTest.cs file you should provide 
-  "<BROWSERSTACK_USERNAME>" and "<BROWSERSTACK_ACCESS_KEY>".
+  In order to execute tests on Browserstack, inside the ImdbAndroidBrowserStackTest.cs file you should 
+provide "<BROWSERSTACK_USERNAME>" and "<BROWSERSTACK_ACCESS_KEY>".
 The username and access key are provided by clicking the Access Key dropdown on Browserstack App Automate website section: https://app-automate.browserstack.com/.
 
   The last thing needed is to upload the IMDb APK file to browserstack and use the reference ID of the uploaded app as our App Capability.
