@@ -16,6 +16,4 @@ Once we have the file we can manually upload it (or programatically via CURL) in
 
 Once we upload the app we should get the corresponding ID in the format: "bs://<app-id>". Once we use uploaded APP as our app capability we are ready to execute tests on browserstack. 
 
-In order to execute tests on different Android devices and different android os versions we need to change the Platform Name and Device Name capabilities inside the ImdbAndroidBrowserStackTest.cs file. The list of devices can be found here: https://www.browserstack.com/list-of-browsers-and-platforms/live.
-
-  
+In order to execute tests on different Android devices and different android os versions we need to change the Platform Name and Device Name capabilities inside the ImdbAndroidBrowserStackTest.cs file. The list of devices can be found here: https://www.browserstack.com/list-of-browsers-and-platforms/automate.
