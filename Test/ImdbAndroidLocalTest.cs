@@ -33,7 +33,7 @@ public class ImdbAndroidLocalTest
         appiumOptions.AddAdditionalAppiumOption("appium:autoGrantPermissions", "true");
         appiumOptions.AddAdditionalAppiumOption("appium:appActivity", "com.imdb.mobile.HomeActivity");
 
-        _driver = new AndroidDriver(Uri, appiumOptions);
+        _driver = new AndroidDriver(Uri, appiumOptions, TimeSpan.FromMinutes(5));
         
         _signInPage = new SignInPage(_driver);
     }
@@ -61,9 +61,9 @@ public class ImdbAndroidLocalTest
     [TestCase(Movies.EternalSunshineOfASpotlessMind)]
     public void MovieScoresCheck(Movies movie)
     {
-        var movieApiRating = ImdbApi.GetRatings(movie.GetMovieTitle(), movie.GetMovieYear());
-        
-        var moviePage = _signInPage.TapOnOkButton()
+        var movieApiRating = RapidApi.GetRatings(movie);
+
+        var moviePage = _signInPage
             .TapOnSearchButton()
             .TapOnSearchField()
             .EnterMovieName(movie)
@@ -72,8 +72,8 @@ public class ImdbAndroidLocalTest
 
         using (new AssertionScope())
         {
-            moviePage.GetMetaCriticRating().Should().Be(ImdbApi.GetMetaCriticRating(movieApiRating));
-            moviePage.GetImdbRating().Should().Be(ImdbApi.GetImdbRating(movieApiRating));
+            moviePage.GetMetaCriticRating().Should().Be(movieApiRating.Item2);
+            moviePage.GetImdbRating().Should().Be(movieApiRating.Item1);
         }
     }
 }
