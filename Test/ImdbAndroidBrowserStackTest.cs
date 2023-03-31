@@ -78,10 +78,9 @@ public class ImdbAndroidBrowserStackTest
     [TestCase(Movies.EternalSunshineOfASpotlessMind)]
     public void MovieRatingCheck(Movies movie)
     {
-        var movieApiRating = ImdbApi.GetRatings(movie.GetMovieTitle(), movie.GetMovieYear());
+        var movieApiRating = RapidApi.GetRatings(movie);
         
-        var moviePage = _signInPage.TapOnOkButton()
-            .TapOnSearchButton()
+        var moviePage = _signInPage.TapOnSearchButton()
             .TapOnSearchField()
             .EnterMovieName(movie)
             .TapOnMovie(movie)
@@ -89,8 +88,8 @@ public class ImdbAndroidBrowserStackTest
 
         using (new AssertionScope())
         {
-            moviePage.GetMetaCriticRating().Should().Be(ImdbApi.GetMetaCriticRating(movieApiRating));
-            moviePage.GetImdbRating().Should().Be(ImdbApi.GetImdbRating(movieApiRating));
+            moviePage.GetMetaCriticRating().Should().Be(movieApiRating.Item2);
+            moviePage.GetImdbRating().Should().Be(movieApiRating.Item1);
         }
     }
 }
